@@ -49,13 +49,19 @@ def search_files(query):
         result_df = pd.DataFrame(result_df)
 
 
-        # 유사도 순으로 정렬
+        # 유사도 순으로 정렬 및 출력
         for cluster in result_df['cluster_name'].unique():
-            st.subheader(f"🗂️ {cluster} 클러스터")
             cluster_results = result_df[result_df['cluster_name'] == cluster].sort_values(by="similarity", ascending=False)
             
             for _, row in cluster_results.iterrows():
-                st.write(f"📄 {row['file_name']} (유사도: {row['similarity']:.2f})")
+                st.write(f"{cluster} / {row['file_name']} (유사도: {row['similarity']*100:.2f}%)")
+                
+        #for cluster in result_df['cluster_name'].unique():
+        #    st.subheader(f"🗂️ {cluster} 클러스터")
+        #    cluster_results = result_df[result_df['cluster_name'] == cluster].sort_values(by="similarity", ascending=False)
+            
+        #    for _, row in cluster_results.iterrows():
+        #        st.write(f"📄 {row['file_name']} (유사도: {row['similarity']:.2f})")
                 
         # 유사도 순으로 정렬 및 출력
         #for cluster in result_df['cluster_name'].unique():
