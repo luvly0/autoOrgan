@@ -15,6 +15,3 @@ if query:
     from search_file import search_files
     results = search_files(query)
 
-    st.write("### 📄 검색 결과:")
-    for item in results:
-        st.write(f"- {item}")
