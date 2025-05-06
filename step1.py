@@ -1,3 +1,5 @@
+def generate_index_and_metadata():
+
 import os
 import pandas as pd
 import faiss
