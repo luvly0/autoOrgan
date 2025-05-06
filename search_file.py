@@ -36,8 +36,6 @@ def search_files(query):
 
         # 유사도 검색
         D, I = index.search(query_vec, k=5)  # 가장 유사한 5개 파일 찾기
-
-        st.subheader("📂 유사한 파일 목록")
         
         # 유사한 파일 결과를 리스트로 저장
         result_df = []
@@ -50,10 +48,12 @@ def search_files(query):
         # DataFrame으로 변환
         result_df = pd.DataFrame(result_df)
         
-        # 유사도 순으로 정렬
+        # 유사도 순으로 정렬 및 출력
         for cluster in result_df['cluster_name'].unique():
-            st.subheader(f"🗂️ {cluster} 클러스터")
             cluster_results = result_df[result_df['cluster_name'] == cluster].sort_values(by="similarity", ascending=False)
+        
+            st.subheader(f"{cluster}")
             
             for _, row in cluster_results.iterrows():
-                st.write(f"📄 {row['file_name']} (유사도: {row['similarity']:.2f})")
+                similarity_percent = row['similarity'] * 100 #유사도 계산
+                st.write(f"{cluster} / {row['file_name']} (유사도: {similarity_percent:.1f}%)")
