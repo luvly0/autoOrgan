@@ -60,6 +60,6 @@ def generate_index_and_metadata():
     
     metadata.to_csv(file_metadata_path, index=False)
     
-    print("✅ 인덱스, 메타데이터, 클러스터 파일 생성 완료.")
+    print(" 인덱스, 메타데이터, 클러스터 파일 생성 완료.")
 
 
